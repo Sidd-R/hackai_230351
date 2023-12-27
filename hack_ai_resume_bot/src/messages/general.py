@@ -10,5 +10,4 @@ class UAgentResponse(Model):
   type: UAgentResponseType
   agent_address: Optional[str]
   message: Optional[str]
-  options: Optional[List[KeyValue]]
   request_id: Optional[str]
