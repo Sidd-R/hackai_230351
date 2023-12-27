@@ -49,16 +49,8 @@ To run the demo, you need API keys from:
 
 Note that if you’ve run out of OpenAI credits, you will not be able to get results for this example.
 
-##### Core Signal API Key
-* Visit CORE SIGNAL.
-* Sign up or log in.
-* Once subscribed, copy your Core Signal API Key.
-
-
-Once you have all three keys, create a .env file in the hack_ai_resume_bot/src directory.
 ```bash
 export PALM_API_KEY="{GET THE API KEY}"
-export CORESIGNAL_API_KEY="{GET THE API KEY}"
 ```
 To use the environment variables from .env and install the project:
 ```bash
