@@ -1,4 +1,4 @@
-from messages import UAgentResponse, UAgentResponseType, JobTitle
+from messages import UAgentResponse, JobTitle
 from uagents import Agent, Context, Protocol
 import requests
 from uagents.setup import fund_agent_if_low
@@ -7,6 +7,7 @@ import re
 import PyPDF2
 import joblib
 from io import BytesIO
+import base64
 
 JOB_TITLE_SEED = os.getenv("JOB_TITLE_SEED", "job_title really secret phrase")
 
@@ -59,9 +60,13 @@ job_title_recommendation_protocol = Protocol(JobTitle)
 
 fund_agent_if_low(agent.wallet.address())
 
+def decode_from_base64(encoded_string):
+    decoded_data = base64.b64decode(encoded_string)
+    return decoded_data
+
 @job_title_recommendation_protocol.on_message(model=JobTitle, replies=UAgentResponse)
-async def job_title_recommendation(ctx: Context, sender: str, job_title: JobTitle):
-    pdf_content = job_title.resume
+async def job_title_recommendation(ctx: Context, sender: str, msg: JobTitle):
+    pdf_content = decode_from_base64(job_title.resume)
     text = pdf_to_text(pdf_content)
     cleaned_resume = cleanResume(text)
     word_vectorizer = joblib.load("wordvec.joblib")
@@ -69,6 +74,6 @@ async def job_title_recommendation(ctx: Context, sender: str, job_title: JobTitl
     category = clf.predict(WordFeatures)
     recommended_job_title = categories[category[0]]
     response_message = f"Based on your resume, I recommend the job title: {recommended_job_title}"
-    await ctx.send_message(sender=sender, text=response_message)
+    await ctx.send_message(sender=msg.client_address, text=response_message)
 
 agent.include(job_title_recommendation_protocol)

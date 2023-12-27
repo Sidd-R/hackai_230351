@@ -1,4 +1,4 @@
-from messages import UAgentResponse, UAgentResponseType, ScheduleReminder
+from messages import UAgentResponse, ScheduleReminder
 from uagents import Agent, Context, Protocol
 import requests
 from uagents.setup import fund_agent_if_low
@@ -34,7 +34,7 @@ async def send_schedule_reminder(ctx: Context, sender: str, msg: ScheduleReminde
         if deadline.date() == tomorrow.date():
             for job_title, job_url in job_details_list:
                 reminder_msg = f"Reminder: Tomorrow is the deadline for job '{job_title}'. Don't forget to complete it! {job_url}"
-                await ctx.send_message(sender=sender, text=reminder_msg)
+                await ctx.send_message(sender=msg.client_address, text=reminder_msg)
 
 
 agent.include(schedule_remainder_protocol)
