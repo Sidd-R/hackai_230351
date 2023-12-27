@@ -7,15 +7,15 @@ from datetime import datetime, timedelta
 
 SCHEDULE_REMINDER_SEED = os.getenv("JOB_TITLE_SEED", "schedule_reminder really secret phrase")
 
+# create schedule reminder agent
 agent = Agent(
     name="schedule_reminder_recommendation",
-    seed=SCHEDULE_REMINDER_SEED
+    seed=SCHEDULE_REMINDER_SEED,
 )
 
 fund_agent_if_low(agent.wallet.address())
 
-# /schedule_remainder_protocol = Protocol(ScheduleReminder)
-
+# get no of days to schedule reminder 
 @agent.on_message(model=ScheduleReminder)
 async def receive_schedule_remainder(ctx: Context, sender: str, msg: ScheduleReminder):
     jobs = ctx.storage.get("jobs") or {}
