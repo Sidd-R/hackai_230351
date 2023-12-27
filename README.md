@@ -1,9 +1,9 @@
 #  Job-Mitra - Resume Analyser & Job Finder
 ## Description
-###Agent Architecture
+### Agent Architecture
 The agent architecture is as follows - 
 ![alt text](https://github.com/Sidd-R/hackai_230351/blob/main/agent_architecture.png?raw=true)
-###Workflow
+### Workflow
 The project workflow is as follows - 
 ![alt text](https://github.com/Sidd-R/hackai_230351/blob/main/workflow.png?raw=true)
 The job search agent using Fetch.AI's uAgent is a agent that can be used to analyze the resume and find the perfect job title and job openings. This can be useful for freshers as well as experienced developers as it reduces the manual work of searching compatible jobs.
