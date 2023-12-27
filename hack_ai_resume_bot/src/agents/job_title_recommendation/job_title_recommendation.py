@@ -1,4 +1,4 @@
-from messages import UAgentResponse, UAgentResponseType, JobTitle
+from messages import UAgentResponse, JobTitleRequest, JobTitleResponse, ClientResponse
 from uagents import Agent, Context, Protocol
 import requests
 from uagents.setup import fund_agent_if_low
@@ -7,6 +7,7 @@ import re
 import PyPDF2
 import joblib
 from io import BytesIO
+import base64
 
 JOB_TITLE_SEED = os.getenv("JOB_TITLE_SEED", "job_title really secret phrase")
 
@@ -55,20 +56,28 @@ agent = Agent(
     seed=JOB_TITLE_SEED
 )
 
-job_title_recommendation_protocol = Protocol(JobTitle)
+# job_title_recommendation_protocol = Protocol(JobTitleRequest)
 
 fund_agent_if_low(agent.wallet.address())
 
-@job_title_recommendation_protocol.on_message(model=JobTitle, replies=UAgentResponse)
-async def job_title_recommendation(ctx: Context, sender: str, job_title: JobTitle):
-    pdf_content = job_title.resume
+def decode_from_base64(encoded_string):
+    decoded_data = base64.b64decode(encoded_string)
+    output_file_path = os.path.join("./decoded_file.pdf")
+    with open(output_file_path, "wb") as file:
+        file.write(decoded_data)
+    return output_file_path
+
+@agent.on_message(model=JobTitleRequest)#, replies=UAgentResponse)
+async def job_title_recommendation(ctx: Context, sender: str, msg: JobTitleRequest):
+    pdf_content = decode_from_base64(msg.resume)
     text = pdf_to_text(pdf_content)
     cleaned_resume = cleanResume(text)
-    word_vectorizer = joblib.load("wordvec.joblib")
+    word_vectorizer = joblib.load("./wordvec.joblib")
     WordFeatures = word_vectorizer.transform([cleaned_resume])
     category = clf.predict(WordFeatures)
     recommended_job_title = categories[category[0]]
-    response_message = f"Based on your resume, I recommend the job title: {recommended_job_title}"
-    await ctx.send_message(sender=sender, text=response_message)
+    # response_message = f"Based on your resume, I recommend the job title: {recommended_job_title}"
+    print("job title recommendation", recommended_job_title)
+    await ctx.send('agent1qthu0ll2z92ckynm96x5fx3qdlwp46e0ksnpnqt29mdp48tghsqaq4rppz3', JobTitleResponse(job_title=recommended_job_title, client_address=msg.client_address, resume=msg.resume))
 
-agent.include(job_title_recommendation_protocol)
+# agent.include(job_title_recommendation_protocol)

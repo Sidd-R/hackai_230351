@@ -2,7 +2,7 @@ from uagents import Agent, Context, Model
 from uagents.setup import fund_agent_if_low
 import requests
 # from messages import UAgentResponse, UAgentResponseType
-from messages import CentralMessageFromClient
+from messages import CentralMessageFromClient, JobTitleRequest
 import os
 from typing import TextIO
 import base64
@@ -27,11 +27,15 @@ async def startup_event(context: Context):
   print("Central agent started")
 
 @agent.on_message(model=CentralMessageFromClient)
-async def message_event(context: Context, sender: str, message: CentralMessageFromClient):
+async def message_event(context: Context, sender: str, msg: CentralMessageFromClient):
   print("Central agent received a message from",sender)
   # print(context)
-  print("type of message ",message.type)
-  decode_from_base64(message.file)
+  # print("type of message ",message.type)
+  # file = decode_from_base64(message.file)
+  # print(msg.resume,sender)
+  await context.send("agent1q0e6p9geqsk772mw6uz46y3868c5ymtpdmxlvfnv9zmswl7vwwdeul6tpfm",JobTitleRequest(resume=msg.resume,client_address=sender))
+  
+  
   
   # if context.message.type == UAgentResponseType.ALERT:
   #   print("Central agent received an alert")
