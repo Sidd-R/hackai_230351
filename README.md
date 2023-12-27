@@ -25,6 +25,13 @@ The user can now select a job of his/her choice and set a reminder for the appli
 * Email notifications for job deadline reminders.
 * To give user option to search across multiple job titles using multiple classification.
 
+## Output Screenshots
+![Screenshot 1](https://github.com/Sidd-R/hackai_230351/blob/main/screenshot_1.png?raw=true)
+![Screenshot 2](https://github.com/Sidd-R/hackai_230351/blob/main/screenshot_2.png?raw=true)
+![Screenshot 3](https://github.com/Sidd-R/hackai_230351/blob/main/screenshot_3.png?raw=true)
+![Screenshot 4](https://github.com/Sidd-R/hackai_230351/blob/main/screenshot_4.png?raw=true)
+![Screenshot 5](https://github.com/Sidd-R/hackai_230351/blob/main/screenshot_5.png?raw=true)
+
 ## Instructions To Run The Project
 ### Step 1: Prerequisites
 Before starting, you'll need the following:
