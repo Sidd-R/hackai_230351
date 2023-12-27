@@ -1,10 +1,8 @@
-from datetime import datetime
-
 from uagents import Model
 
 
 class CentralMessageFromClient(Model):
-  type: str #"RESUME_UPLOAD" | "TITLE_SELECTED" | "POSTING_SELECTED" | "SCHEDULE_REMINDER" 
+  type: str 
   resume: str | None
   titleOption: int | None
   postingOption: int | None
@@ -12,12 +10,11 @@ class CentralMessageFromClient(Model):
   postingLink: str | None
 
 class CentralMessageFromServer(Model):
-  type: str#"JOB_LISTINGS"
+  type: str
   jobListings: list | None
   
 class ClientResponse(Model):
-  type: str#"JOB_LISTINGS"
-  # jobListings: list | None
+  type: str
   job_urls: list | None
   job_titles: list | None
   compatibility: list | None

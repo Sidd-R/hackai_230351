@@ -36,6 +36,3 @@ async def send_schedule_reminder(ctx: Context):
             for job_title, job_url in job_details_list:
                 reminder_msg = f"Reminder: Tomorrow is the deadline for job '{job_title}'. Don't forget to complete it! {job_url}"
                 await ctx.send(sender=msg.client_address, text=reminder_msg)
-
-
-# agent.include(schedule_remainder_protocol)

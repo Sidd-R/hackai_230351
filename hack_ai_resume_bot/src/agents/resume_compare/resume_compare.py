@@ -84,6 +84,7 @@ async def get_job_postings(job_title:str):
     job_titles = []
     
     for i in range(5):
+        print("getting data for job ",i+1)
         url = f"https://api.coresignal.com/cdapi/v1/linkedin/job/collect/{job_ids[i]}"
 
         payload = {}
@@ -152,8 +153,6 @@ async def receive_schedule_remainder(ctx: Context, sender: str, msg: JobTitleRes
 
         response_message = similarity[0][0] * 100
         compatibility.append(response_message)
-        # print("similarity", response_message)
-        # print("job description", job_descriptions)
     
     for x in range(5):
         for y in range(5):
@@ -176,4 +175,3 @@ async def receive_schedule_remainder(ctx: Context, sender: str, msg: JobTitleRes
     
     await ctx.send(msg.client_address, ClientResponse(type="JOB_LISTINGS",compatibility=compatibility,job_descriptions=job_descriptions,job_urls=job_urls,job_titles=job_titles))
 
-# agent.include(resume_compare_protocol)

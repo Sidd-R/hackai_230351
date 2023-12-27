@@ -56,8 +56,6 @@ agent = Agent(
     seed=JOB_TITLE_SEED
 )
 
-# job_title_recommendation_protocol = Protocol(JobTitleRequest)
-
 fund_agent_if_low(agent.wallet.address())
 
 def decode_from_base64(encoded_string):
@@ -76,8 +74,5 @@ async def job_title_recommendation(ctx: Context, sender: str, msg: JobTitleReque
     WordFeatures = word_vectorizer.transform([cleaned_resume])
     category = clf.predict(WordFeatures)
     recommended_job_title = categories[category[0]]
-    # response_message = f"Based on your resume, I recommend the job title: {recommended_job_title}"
     print("job title recommendation", recommended_job_title)
     await ctx.send('agent1qthu0ll2z92ckynm96x5fx3qdlwp46e0ksnpnqt29mdp48tghsqaq4rppz3', JobTitleResponse(job_title=recommended_job_title, client_address=msg.client_address, resume=msg.resume))
-
-# agent.include(job_title_recommendation_protocol)

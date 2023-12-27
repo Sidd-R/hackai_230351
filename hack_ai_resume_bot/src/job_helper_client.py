@@ -100,7 +100,6 @@ async def message_handler(ctx: Context, sender: str, msg: ClientResponse):
       await ctx.send("agent1qwge5z5m6ghkm35sum22zeuv7q37nv7yj5cw7n2l8k2zd44e8n5njmez40r",ScheduleReminder(job_title=msg.job_titles[job_index],job_url=msg.job_urls[job_index],job_deadline=no_of_days))
       
       print("Reminder set")  
-    # root.mainloop()    
 
 if __name__ == "__main__":
     # currency_exchange_client.run()
