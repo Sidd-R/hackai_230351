@@ -30,7 +30,6 @@ The user can now select a job of his/her choice and set a reminder for the appli
 ![Screenshot 2](https://github.com/Sidd-R/hackai_230351/blob/main/screenshot_2.png?raw=true)
 ![Screenshot 3](https://github.com/Sidd-R/hackai_230351/blob/main/screenshot_3.png?raw=true)
 ![Screenshot 4](https://github.com/Sidd-R/hackai_230351/blob/main/screenshot_4.png?raw=true)
-![Screenshot 5](https://github.com/Sidd-R/hackai_230351/blob/main/screenshot_5.png?raw=true)
 
 ## Instructions To Run The Project
 ### Step 1: Prerequisites
