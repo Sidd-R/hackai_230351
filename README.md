@@ -2,10 +2,12 @@
 ## Description
 ### Agent Architecture
 The agent architecture is as follows - 
-![alt text](https://github.com/Sidd-R/hackai_230351/blob/main/agent_architecture.png?raw=true)
+![Agent Architecture](https://github.com/Sidd-R/hackai_230351/blob/main/agent_architecture.png?raw=true)
+
 ### Workflow
 The project workflow is as follows - 
-![alt text](https://github.com/Sidd-R/hackai_230351/blob/main/workflow.png?raw=true)
+![Project Workflow](https://github.com/Sidd-R/hackai_230351/blob/main/workflow.png?raw=true)
+
 The job search agent using Fetch.AI's uAgent is a agent that can be used to analyze the resume and find the perfect job title and job openings. This can be useful for freshers as well as experienced developers as it reduces the manual work of searching compatible jobs.
 The job search agent works as follows first the agent on the client side sends the resume upload by the user to the server side. The resume is then sent to the job title recommendation agent where we have used a model trained using 2400 resumes across some predefined categories. The model works on K-nearest neighbours approach to classify and provide a job title.
 The job title now received is further send to the job search agent where first jobs are searched for the particular title using the CORE_SIGNAL_API. Now the jobs obtained are compared on the basis of their job descriptions and the features extracted from the resume to provide a compatibility score. The list of the jobs is sorted and then displayed to the user.
